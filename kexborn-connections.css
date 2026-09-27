@@ -1,0 +1,512 @@
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@400;700&family=Philosopher:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* =======================================
+   ПАЛИТРЫ ТЕМ
+   ======================================= */
+.kbm-window {
+    --kbm-bg: none; 
+    --kbm-bg-color: #e6e3da;
+    --kbm-border: #7a200d;
+    --kbm-border-subtle: rgba(122, 32, 13, 0.2);
+    --kbm-text: #000;
+    --kbm-text-muted: #444;
+    --kbm-font-header: 'Modesto Condensed', 'Palatino Linotype', serif;
+    --kbm-font-body: 'Signika', sans-serif;
+    --kbm-panel: rgba(255, 255, 255, 0.5); 
+    --kbm-input-bg: rgba(255, 255, 255, 0.5);
+    --kbm-input-text: #7a200d;
+    --kbm-sidebar-bg: none; 
+    --kbm-sidebar-icon: #777; 
+    --kbm-sidebar-active: #7a200d;
+    --kbm-danger: #7a200d;
+}
+
+.theme-dnd-dark {
+    --kbm-bg: none; 
+    --kbm-bg-color: #24211f;
+    --kbm-border: #992410;
+    --kbm-border-subtle: rgba(153, 36, 16, 0.3);
+    --kbm-text: #dcd0c0;
+    --kbm-text-muted: #958d82;
+    --kbm-font-header: 'Modesto Condensed', 'Palatino Linotype', serif;
+    --kbm-font-body: 'Signika', sans-serif;
+    --kbm-panel: rgba(0, 0, 0, 0.4);
+    --kbm-input-bg: rgba(0, 0, 0, 0.5);
+    --kbm-input-text: #e6e3da;
+    --kbm-sidebar-bg: none; 
+    --kbm-sidebar-icon: #756d62; 
+    --kbm-sidebar-active: #992410;
+    --kbm-danger: #d9381e;
+}
+
+.theme-dark {
+    --kbm-bg: none;
+    --kbm-bg-color: #1a1c1e;
+    --kbm-border: #8a0303;
+    --kbm-border-subtle: rgba(138, 3, 3, 0.3);
+    --kbm-text: #d4d4d4;
+    --kbm-text-muted: #888;
+    --kbm-font-header: 'Philosopher', serif;
+    --kbm-font-body: sans-serif;
+    --kbm-panel: rgba(255,255,255,0.05);
+    --kbm-input-bg: rgba(0,0,0,0.3);
+    --kbm-input-text: #fff;
+    --kbm-sidebar-bg: none;
+    --kbm-sidebar-icon: #555;
+    --kbm-sidebar-active: #8a0303;
+    --kbm-danger: #ff3333;
+}
+
+.theme-scifi {
+    --kbm-bg: none;
+    --kbm-bg-color: #0d1117;
+    --kbm-border: #00e6ff;
+    --kbm-border-subtle: rgba(0, 230, 255, 0.2);
+    --kbm-text: #c9d1d9;
+    --kbm-text-muted: #8b949e;
+    --kbm-font-header: 'Jura', sans-serif;
+    --kbm-font-body: sans-serif;
+    --kbm-panel: rgba(0, 230, 255, 0.05);
+    --kbm-input-bg: rgba(0, 230, 255, 0.1);
+    --kbm-input-text: #00e6ff;
+    --kbm-sidebar-bg: none;
+    --kbm-sidebar-icon: #30363d;
+    --kbm-sidebar-active: #00e6ff;
+    --kbm-danger: #ff4444;
+}
+
+.theme-universal {
+    --kbm-bg: none;
+    --kbm-bg-color: #f4f4f5;
+    --kbm-border: #3f3f46;
+    --kbm-border-subtle: rgba(63, 63, 70, 0.2);
+    --kbm-text: #18181b;
+    --kbm-text-muted: #52525b;
+    --kbm-font-header: sans-serif;
+    --kbm-font-body: sans-serif;
+    --kbm-panel: #e4e4e7;
+    --kbm-input-bg: #fff;
+    --kbm-input-text: #18181b;
+    --kbm-sidebar-bg: none;
+    --kbm-sidebar-icon: #a1a1aa;
+    --kbm-sidebar-active: #3f3f46;
+    --kbm-danger: #e41111;
+}
+
+.theme-universal-dark {
+    --kbm-bg: none;
+    --kbm-bg-color: #18181b;
+    --kbm-border: #71717a;
+    --kbm-border-subtle: rgba(113, 113, 122, 0.3);
+    --kbm-text: #f4f4f5;
+    --kbm-text-muted: #a1a1aa;
+    --kbm-font-header: sans-serif;
+    --kbm-font-body: sans-serif;
+    --kbm-panel: #27272a;
+    --kbm-input-bg: #18181b;
+    --kbm-input-text: #f4f4f5;
+    --kbm-sidebar-bg: none;
+    --kbm-sidebar-icon: #52525b;
+    --kbm-sidebar-active: #f4f4f5;
+    --kbm-danger: #ef4444;
+}
+
+/* =======================================
+   СТРУКТУРНЫЕ СТИЛИ И ФОНЫ
+   ======================================= */
+.settlement .window-content, 
+.organization .window-content, 
+.faction .window-content, 
+.city-structure .window-content, 
+.organization-feature .window-content,
+.special-place .window-content { 
+    padding: 0 !important; 
+    background: transparent !important; 
+    overflow: hidden; 
+}
+
+form.kbm-window {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: var(--kbm-bg-color) !important;
+    background-image: var(--kbm-bg) !important;
+    color: var(--kbm-text) !important;
+    font-family: var(--kbm-font-body) !important;
+    overflow: hidden;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 15px;
+}
+
+form.kbm-window.settlement-form {
+    display: flex !important;
+    flex-direction: row !important;
+    margin: 0;
+    padding: 0;
+}
+
+form.kbm-window .sheet-main {
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    min-width: 0; 
+    padding: 15px; 
+}
+
+form.kbm-window .sheet-header { display: flex; flex-direction: column; flex: 0 0 auto; margin-bottom: 15px; position: relative; width: 100%; }
+form.kbm-window .sheet-body { flex: 1; overflow-y: auto; overflow-x: hidden; padding-right: 5px; }
+
+/* Боковая панель (Сайдбар Города) */
+form.kbm-window .settlement-sidebar { 
+    display: flex !important; 
+    flex-direction: column !important; 
+    align-items: center; 
+    justify-content: center;
+    gap: 15px; 
+    background-color: var(--kbm-panel) !important;
+    background-image: var(--kbm-sidebar-bg) !important; 
+    border: 2px solid var(--kbm-border); 
+    border-radius: 5px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.1); 
+    z-index: 10; 
+    margin: 0;
+}
+
+form.kbm-window.theme-dark .settlement-sidebar, 
+form.kbm-window.theme-dnd-dark .settlement-sidebar,
+form.kbm-window.theme-scifi .settlement-sidebar, 
+form.kbm-window.theme-universal .settlement-sidebar, 
+form.kbm-window.theme-universal-dark .settlement-sidebar { 
+    background-color: var(--kbm-panel) !important; 
+    background-image: none !important;
+}
+
+form.kbm-window .settlement-sidebar .item { opacity: 0.5; transition: all 0.2s ease; cursor: pointer; color: var(--kbm-sidebar-icon) !important; font-size: 22px; }
+form.kbm-window .settlement-sidebar .item:hover { opacity: 1; transform: scale(1.1); color: var(--kbm-sidebar-active) !important; }
+form.kbm-window .settlement-sidebar .item.active { opacity: 1; color: var(--kbm-sidebar-active) !important; text-shadow: 0 0 10px rgba(122, 32, 13, 0.5) !important; }
+
+/* Вкладки */
+form.kbm-window .tab { display: none; }
+form.kbm-window .tab.active { display: block; }
+
+/* Тексты и рамки */
+form.kbm-window h1, form.kbm-window h2, form.kbm-window h3, form.kbm-window h4, form.kbm-window label, form.kbm-window strong { color: var(--kbm-text) !important; font-family: var(--kbm-font-header) !important; border-color: var(--kbm-border) !important; margin-top: 0; }
+form.kbm-window input, form.kbm-window select { color: var(--kbm-input-text) !important; border-color: var(--kbm-border) !important; background: var(--kbm-input-bg) !important; font-family: var(--kbm-font-header) !important; }
+
+form.kbm-window select option { background-color: var(--kbm-bg-color) !important; color: var(--kbm-text) !important; }
+form.kbm-window input[type="range"] { accent-color: var(--kbm-border) !important; box-shadow: none !important; }
+form.kbm-window p { color: var(--kbm-text-muted) !important; }
+
+/* Элементы листов */
+form.kbm-window .item-list .item { background: var(--kbm-panel) !important; border-color: var(--kbm-border) !important; }
+form.kbm-window .profile-img, form.kbm-window img.item-edit, form.kbm-window .sheet-header img { border-color: var(--kbm-border) !important; }
+form.kbm-window .sheet-header img { background: rgba(0,0,0,0.1); }
+
+form.kbm-window .item-controls .item-control { cursor: pointer; margin-left: 10px; opacity: 0.7; transition: opacity 0.2s; color: var(--kbm-text-muted) !important; }
+form.kbm-window .item-controls .item-control:hover { opacity: 1; text-shadow: 0 0 5px rgba(0,0,0,0.5); }
+form.kbm-window .item-edit { cursor: pointer; }
+
+form.kbm-window .item-delete { color: var(--kbm-text) !important; }
+form.kbm-window .item-delete[style*="background"] { background: var(--kbm-danger) !important; color: #fff !important; border: none !important; }
+form.kbm-window .sheet-lock { color: var(--kbm-border) !important; }
+form.kbm-window .item-drag-handle { color: var(--kbm-text-muted) !important; }
+form.kbm-window .item-drag-handle[style*="background"] { background: var(--kbm-border) !important; color: var(--kbm-bg-color) !important; }
+
+/* Разное */
+form.kbm-window .bonus-badge { padding: 1px 5px; border-radius: 3px; font-size: 10px; white-space: nowrap; font-weight: bold; border-color: var(--kbm-border) !important; color: var(--kbm-text) !important; background: var(--kbm-panel) !important; border: 1px solid; }
+form.kbm-window .subtype-badge { padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: bold; text-transform: uppercase; background: var(--kbm-border) !important; color: var(--kbm-bg-color) !important; }
+form.kbm-window .token-radio { width: 18px; height: 18px; border-radius: 50%; display: inline-block; cursor: pointer; transition: all 0.2s; position: relative; z-index: 50; border: 2px solid var(--kbm-border) !important; background: rgba(0,0,0,0.05); }
+form.kbm-window .token-radio.active { background: var(--kbm-border) !important; box-shadow: 0 0 5px var(--kbm-border) !important; }
+
+form.kbm-window .org-stat-input { width: 35px; height: 22px; text-align: center; border-radius: 3px; font-weight: bold; font-size: 14px; margin-left: 5px; border: 1px solid var(--kbm-border) !important; }
+
+/* Редактор */
+form.kbm-window .prose-editor-container { 
+    min-height: 250px; 
+    border-radius: 5px; 
+    border: 1px dashed var(--kbm-border) !important; 
+    background: var(--kbm-panel) !important; 
+    display: flex; 
+    flex-direction: column; 
+}
+form.kbm-window .prose-editor-container .editor { 
+    min-height: 250px; 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+}
+form.kbm-window .prose-editor-container .editor-content,
+form.kbm-window .prose-editor-container prose-mirror { 
+    min-height: 250px; 
+    padding: 10px; 
+    color: var(--kbm-text) !important; 
+    flex: 1; 
+    overflow-y: auto; 
+}
+
+form.kbm-window .editor-menu { background: rgba(0, 0, 0, 0.15) !important; border-bottom: 1px solid var(--kbm-border) !important; }
+form.kbm-window .editor-menu button, form.kbm-window .editor-menu select { color: var(--kbm-text) !important; }
+form.kbm-window .editor-menu button:hover, form.kbm-window .editor-menu button.active { background: var(--kbm-border) !important; color: var(--kbm-bg-color) !important; border-radius: 3px; text-shadow: none !important; }
+
+/* Верхнее меню навигации (не для города) */
+form.kbm-window .sheet-tabs.tabs { border-color: var(--kbm-border) !important; }
+form.kbm-window nav.sheet-tabs > a.item { color: var(--kbm-text-muted) !important; }
+form.kbm-window nav.sheet-tabs > a.item.active { color: var(--kbm-border) !important; text-shadow: 0 0 5px var(--kbm-border-subtle) !important; }
+
+/* =======================================
+   ДЕРЕВО ИНФРАСТРУКТУРЫ (GRID РЯДЫ)
+   ======================================= */
+.infrastructure-tree {
+    display: flex;
+    flex-direction: column; 
+    gap: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    max-width: 100%;
+}
+
+.tree-horizontal-category {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--kbm-border-subtle);
+    border-radius: 5px;
+    background: rgba(0,0,0,0.02);
+}
+
+.tree-cat-title {
+    background: var(--kbm-panel);
+    padding: 8px 15px;
+    margin: 0;
+    border-bottom: 2px solid var(--kbm-border);
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--kbm-text) !important;
+}
+
+.tree-category-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.tree-levels-header {
+    background: rgba(0,0,0,0.05);
+    border-bottom: 2px solid var(--kbm-border);
+    text-align: center;
+    font-weight: bold;
+    font-family: var(--kbm-font-header) !important;
+    font-size: 18px;
+    padding: 5px;
+    color: var(--kbm-text-muted) !important;
+}
+
+.tree-cell {
+    border-bottom: 1px dashed var(--kbm-border-subtle);
+    border-right: 1px dashed var(--kbm-border-subtle);
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.tree-cell:nth-child(5n) {
+    border-right: none;
+}
+
+/* Карточки узлов */
+.tree-node {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px;
+    border: 2px solid var(--kbm-border);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+    background: var(--kbm-panel);
+    position: relative;
+    min-height: 44px;
+}
+
+.tree-node img {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 3px;
+    border: 1px solid var(--kbm-border);
+}
+
+.tree-node span {
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1.1;
+    color: var(--kbm-text) !important;
+}
+
+/* Стили состояний */
+.tree-node.branch {
+    border-color: #7c3aed !important; 
+    background: rgba(124, 58, 237, 0.05) !important;
+}
+
+.tree-node.built {
+    border-color: #16a34a !important; 
+    background: rgba(22, 163, 74, 0.1) !important;
+}
+.tree-node.built img { border-color: #16a34a !important; }
+
+.tree-node.available {
+    border-color: var(--kbm-border);
+    opacity: 0.9;
+}
+.tree-node.available:hover {
+    transform: scale(1.03);
+    opacity: 1;
+    box-shadow: 0 0 5px var(--kbm-border);
+}
+
+.tree-node.locked {
+    border-color: #71717a !important;
+    background: transparent !important;
+    opacity: 0.4;
+    filter: grayscale(100%);
+    cursor: not-allowed;
+}
+
+/* =======================================
+   ИКОНКИ В МЕНЮ СОЗДАНИЯ АКТЕРОВ (УНИВЕРСАЛЬНЫЕ)
+   ======================================= */
+.standard-form ol.unlist {
+    display: flex !important;
+    flex-direction: column;
+}
+
+/* Элементы kexborn-world-manager */
+.standard-form ol.unlist li:has(input[value^="kexborn-world-manager."]) {
+    order: 99;
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: 5px;
+}
+
+/* Универсальное скрытие дефолтных системных иконок в любых системах (dnd5e, swade, coc и т.д.) */
+label:has(input[value^="kexborn-world-manager."]) [class*="-icon"],
+label:has(input[value^="kexborn-world-manager."]) dnd5e-icon {
+    display: none !important;
+}
+
+label:has(input[value^="kexborn-world-manager."])::before {
+    content: "";
+    display: inline-block;
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    background-color: currentColor; 
+    opacity: 0.7; 
+    margin-right: 10px;
+}
+
+label:has(input[value="kexborn-world-manager.settlement"])::before {
+    -webkit-mask: url('/icons/svg/castle.svg') center / contain no-repeat;
+    mask: url('/icons/svg/castle.svg') center / contain no-repeat;
+}
+label:has(input[value="kexborn-world-manager.special-place"])::before {
+    -webkit-mask: url('/icons/svg/cave.svg') center / contain no-repeat;
+    mask: url('/icons/svg/cave.svg') center / contain no-repeat;
+}
+label:has(input[value="kexborn-world-manager.faction"])::before {
+    -webkit-mask: url('/icons/svg/combat.svg') center / contain no-repeat;
+    mask: url('/icons/svg/combat.svg') center / contain no-repeat;
+}
+label:has(input[value="kexborn-world-manager.organization"])::before {
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 512'%3E%3Cpath d='M144 160c-44.2 0-80-35.8-80-80S99.8 0 144 0s80 35.8 80 80-35.8 80-80 80zm352 0c-44.2 0-80-35.8-80-80S451.8 0 496 0s80 35.8 80 80-35.8 80-80 80zM0 298.7C0 239.8 47.8 192 106.7 192h42.7c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0H21.3C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7h42.7C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3H405.3zM224 224c0-44.2 35.8-80 80-80s80 35.8 80 80-35.8 80-80 80s-80-35.8-80-80zm-53.3 128H469.3c17.7 0 32 14.3 32 32c0 53-43 96-96 96H234.7c-53 0-96-43-96-96c0-17.7 14.3-32 32-32z'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 512'%3E%3Cpath d='M144 160c-44.2 0-80-35.8-80-80S99.8 0 144 0s80 35.8 80 80-35.8 80-80 80zm352 0c-44.2 0-80-35.8-80-80S451.8 0 496 0s80 35.8 80 80-35.8 80-80 80zM0 298.7C0 239.8 47.8 192 106.7 192h42.7c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0H21.3C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7h42.7C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3H405.3zM224 224c0-44.2 35.8-80 80-80s80 35.8 80 80-35.8 80-80 80s-80-35.8-80-80zm-53.3 128H469.3c17.7 0 32 14.3 32 32c0 53-43 96-96 96H234.7c-53 0-96-43-96-96c0-17.7 14.3-32 32-32z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+label:has(input[value="kexborn-world-manager.city-structure"])::before {
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M239.1 6.3l-208 78c-18.7 7-31.1 25-31.1 45v22.5c0 25 20.3 45.2 45.2 45.2H54.6V400H32c-17.7 0-32 14.3-32 32v16c0 17.7 14.3 32 32 32h448c17.7 0 32-14.3 32-32v-16c0-17.7-14.3-32-32-32h-22.6V197H466.8c25 0 45.2-20.3 45.2-45.2V129.4c0-20-12.4-38-31.1-45l-208-78C262 2.2 250 2.2 239.1 6.3zM256 68.4l192 72v11.4H64V140.4l192-72zM112 197h45.3v203H112V197zm112 0h45.3v203H224V197zm112 0h45.3v203H336V197z'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M239.1 6.3l-208 78c-18.7 7-31.1 25-31.1 45v22.5c0 25 20.3 45.2 45.2 45.2H54.6V400H32c-17.7 0-32 14.3-32 32v16c0 17.7 14.3 32 32 32h448c17.7 0 32-14.3 32-32v-16c0-17.7-14.3-32-32-32h-22.6V197H466.8c25 0 45.2-20.3 45.2-45.2V129.4c0-20-12.4-38-31.1-45l-208-78C262 2.2 250 2.2 239.1 6.3zM256 68.4l192 72v11.4H64V140.4l192-72zM112 197h45.3v203H112V197zm112 0h45.3v203H224V197zm112 0h45.3v203H336V197z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+label:has(input[value="kexborn-world-manager.organization-feature"])::before {
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'%3E%3Cpath d='M0 48C0 21.5 21.5 0 48 0l288 0c26.5 0 48 21.5 48 48l0 448c0 13.7-10 25.6-23.5 28.2s-26.6-2.5-34.1-13.4L192 368.1 73.6 510.9c-7.5 10.9-20.6 16-34.1 13.4S0 509.7 0 496L0 48z'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'%3E%3Cpath d='M0 48C0 21.5 21.5 0 48 0l288 0c26.5 0 48 21.5 48 48l0 448c0 13.7-10 25.6-23.5 28.2s-26.6-2.5-34.1-13.4L192 368.1 73.6 510.9c-7.5 10.9-20.6 16-34.1 13.4S0 509.7 0 496L0 48z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* Элементы kexborn-connections */
+.standard-form ol.unlist li:has(input[value^="kexborn-connections."]) {
+    order: 100;
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: 5px;
+}
+
+label:has(input[value^="kexborn-connections."]) [class*="-icon"],
+label:has(input[value^="kexborn-connections."]) dnd5e-icon {
+    display: none !important;
+}
+
+label:has(input[value^="kexborn-connections."])::before {
+    content: "";
+    display: inline-block;
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    background-color: currentColor;
+    opacity: 0.7; 
+    margin-right: 10px;
+}
+
+/* Древо связей (Граф/Связи) */
+label:has(input[value="kexborn-connections.board"])::before {
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 544 512'%3E%3Cpath d='M384 320c-17.6 0-32.5 9.5-41.2 23.8l-104.9-52.5c4-11.8 4-24.8 0-36.6l104.9-52.5C351.5 216.5 366.4 226 384 226c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64c0 6.6 1.1 13 3 19.1l-104.9 52.5c-11.8-11.6-28.2-18.6-46.1-18.6-35.3 0-64 28.7-64 64s28.7 64 64 64c17.9 0 34.3-7 46.1-18.6l104.9 52.5c-1.9 6.1-3 12.5-3 19.1 0 35.3 28.7 64 64 64s64-28.7 64-64-28.7-64-64-64z'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 544 512'%3E%3Cpath d='M384 320c-17.6 0-32.5 9.5-41.2 23.8l-104.9-52.5c4-11.8 4-24.8 0-36.6l104.9-52.5C351.5 216.5 366.4 226 384 226c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64c0 6.6 1.1 13 3 19.1l-104.9 52.5c-11.8-11.6-28.2-18.6-46.1-18.6-35.3 0-64 28.7-64 64s28.7 64 64 64c17.9 0 34.3-7 46.1-18.6l104.9 52.5c-1.9 6.1-3 12.5-3 19.1 0 35.3 28.7 64 64 64s64-28.7 64-64-28.7-64-64-64z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* Таблица рейтинга (Кубок) */
+label:has(input[value="kexborn-connections.rating"])::before {
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512'%3E%3Cpath d='M400 0H176c-26.5 0-48.1 21.8-47.1 48.2c.2 5.3 .4 10.6 .7 15.8H24C10.7 64 0 74.7 0 88c0 92.6 33.5 157 78.5 200.7c44.3 43.1 98.3 64.8 138.1 75.8c23.4 6.5 39.4 26 39.4 45.6c0 20.9-17 37.9-37.9 37.9H192c-17.7 0-32 14.3-32 32s14.3 32 32 32H384c17.7 0 32-14.3 32-32s-14.3-32-32-32H357.9C337 448 320 431 320 410.1c0-19.6 15.9-39.2 39.4-45.6c39.9-11 93.9-32.7 138.2-75.8C542.5 245 576 180.6 576 88c0-13.3-10.7-24-24-24H446.4c.3-5.2 .5-10.4 .7-15.8C448.1 21.8 426.5 0 400 0zM48.9 112h84.4c9.1 90.1 29.2 150.3 51.9 190.6c-24.9-11-50.8-26.5-73.2-48.3c-32-31.1-58-76-63-142.3zM464.1 254.3c-22.4 21.8-48.3 37.3-73.2 48.3c22.7-40.3 42.8-100.5 51.9-190.6h84.4c-5.1 66.3-31.1 111.2-63.1 142.3z'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512'%3E%3Cpath d='M400 0H176c-26.5 0-48.1 21.8-47.1 48.2c.2 5.3 .4 10.6 .7 15.8H24C10.7 64 0 74.7 0 88c0 92.6 33.5 157 78.5 200.7c44.3 43.1 98.3 64.8 138.1 75.8c23.4 6.5 39.4 26 39.4 45.6c0 20.9-17 37.9-37.9 37.9H192c-17.7 0-32 14.3-32 32s14.3 32 32 32H384c17.7 0 32-14.3 32-32s-14.3-32-32-32H357.9C337 448 320 431 320 410.1c0-19.6 15.9-39.2 39.4-45.6c39.9-11 93.9-32.7 138.2-75.8C542.5 245 576 180.6 576 88c0-13.3-10.7-24-24-24H446.4c.3-5.2 .5-10.4 .7-15.8C448.1 21.8 426.5 0 400 0zM48.9 112h84.4c9.1 90.1 29.2 150.3 51.9 190.6c-24.9-11-50.8-26.5-73.2-48.3c-32-31.1-58-76-63-142.3zM464.1 254.3c-22.4 21.8-48.3 37.3-73.2 48.3c22.7-40.3 42.8-100.5 51.9-190.6h84.4c-5.1 66.3-31.1 111.2-63.1 142.3z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* --- СТИЛИ ДЛЯ ДОСКИ (BOARD) --- */
+.kbm-board-form .board-viewport:active {
+    cursor: grabbing !important;
+}
+
+.kbm-board-form .board-btn {
+    background: rgba(0,0,0,0.1);
+    border: 1px solid var(--kbm-border-subtle);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: bold;
+}
+.kbm-board-form .board-btn:hover {
+    background: rgba(0,0,0,0.2);
+    border-color: var(--kbm-border);
+}
+
+.kbm-board-form .board-node .node-header:active {
+    cursor: grabbing !important;
+}
+
+/* Точки-коннекторы для связей (сначала скрыты, появляются при наведении) */
+.kbm-board-form .node-port {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #ff6b6b;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.2s;
+    cursor: crosshair;
+    z-index: 10;
+}
+
+.kbm-board-form .board-node:hover .node-port {
+    opacity: 1;
+}
+
+.kbm-board-form .port-top { top: -6px; left: calc(50% - 6px); }
+.kbm-board-form .port-bottom { bottom: -6px; left: calc(50% - 6px); }
+.kbm-board-form .port-left { left: -6px; top: calc(50% - 6px); }
+.kbm-board-form .port-right { right: -6px; top: calc(50% - 6px); }

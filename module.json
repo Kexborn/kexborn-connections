@@ -1,0 +1,82 @@
+{
+  "id": "kexborn-connections",
+  "title": "Kexborn.mod - Связи и Рейтинги",
+  "description": "Графы отношений, родословные и рейтинговые таблицы для Foundry VTT.",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Kexborn"
+    }
+  ],
+  "url": "https://github.com/Kexborn/kexborn-connections",
+  "manifest": "https://github.com/Kexborn/kexborn-connections/releases/latest/download/module.json",
+  "download": "https://github.com/Kexborn/kexborn-connections/releases/download/v1.0.0/kexborn-connections.zip",
+  "compatibility": {
+    "minimum": "12",
+    "verified": "14.367"
+  },
+  "esmodules": [
+    "main.js"
+  ],
+  "styles": [
+    "kexborn-connections.css"
+  ],
+  "languages": [
+    {
+      "lang": "ru",
+      "name": "Русский",
+      "path": "lang/ru.json"
+    },
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "de",
+      "name": "Deutsch",
+      "path": "lang/de.json"
+    },
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json"
+    },
+    {
+      "lang": "es",
+      "name": "Español",
+      "path": "lang/es.json"
+    },
+    {
+      "lang": "pt",
+      "name": "Português",
+      "path": "lang/pt.json"
+    },
+    {
+      "lang": "it",
+      "name": "Italiano",
+      "path": "lang/it.json"
+    },
+    {
+      "lang": "pl",
+      "name": "Polski",
+      "path": "lang/pl.json"
+    },
+    {
+      "lang": "zh",
+      "name": "中文",
+      "path": "lang/zh.json"
+    },
+    {
+      "lang": "ja",
+      "name": "日本語",
+      "path": "lang/ja.json"
+    }
+  ],
+  "documentTypes": {
+    "Actor": {
+      "board": {},
+      "rating": {}
+    }
+  }
+}

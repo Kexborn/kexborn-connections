@@ -1,0 +1,143 @@
+<form class="{{cssClass}} kbm-window theme-{{theme}}" autocomplete="off" style="height: 100%; display: flex; flex-direction: column; padding: 0; position: relative;">
+    <style>
+        .kbm-rating-sheet .window-content { padding: 0 !important; background: var(--kbm-bg-color) !important; border: none !important; }
+        .kbm-rating-sheet .window-header { background: rgba(0, 0, 0, 0.7) !important; border-bottom: none !important; }
+        .kbm-rating-sheet .window-header .window-title { color: #ffffff !important; text-shadow: 1px 1px 2px #000; }
+        .kbm-rating-sheet .window-header a { color: #ffffff !important; }
+        .kbm-rating-sheet .sheet-header { margin-bottom: 0 !important; }
+
+        .kbm-rating-sheet table { border: none !important; }
+        .kbm-rating-sheet thead, .kbm-rating-sheet th { border-top: none !important; border-bottom: 1px dashed var(--kbm-border-subtle) !important; padding-bottom: 8px; }
+
+        #rating-context-menu button { transition: 0.2s; }
+        #rating-context-menu button:hover { background: #555 !important; border-color: #fff !important; }
+
+        #global-note-tooltip {
+            display: none;
+            opacity: 0;
+            position: absolute;
+            width: 300px;
+            background: #111;
+            border: 2px solid var(--kbm-border);
+            border-radius: 6px;
+            padding: 10px;
+            z-index: 9999;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.8);
+            text-align: left;
+            pointer-events: none;
+            transform: translateY(-50%);
+        }
+        #global-note-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -12px;
+            transform: translateY(-50%);
+            border-width: 6px;
+            border-style: solid;
+            border-color: transparent transparent transparent var(--kbm-border);
+        }
+        #global-note-tooltip .tooltip-header {
+            font-family: var(--kbm-font-header);
+            font-weight: bold;
+            font-size: 16px;
+            color: #fff;
+            text-align: center;
+            border-bottom: 1px dashed var(--kbm-border-subtle);
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+        }
+        #global-note-tooltip .tooltip-body {
+            font-size: 13px;
+            color: #ccc;
+            white-space: pre-wrap;
+            line-height: 1.4;
+        }
+    </style>
+
+    <div id="global-note-tooltip">
+        <div class="tooltip-header"></div>
+        <div class="tooltip-body"></div>
+    </div>
+
+    <header class="sheet-header" style="position: relative; flex: 0 0 auto; padding: 15px; border-bottom: 2px solid var(--kbm-border) !important; display: flex; align-items: center; justify-content: center; z-index: 20; background: rgba(0,0,0,0.1); flex-direction: row;">
+        
+        <i class="fas fa-trophy" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-size: 24px; color: var(--kbm-border); pointer-events: none;"></i>
+        
+        <input name="name" type="text" value="{{actor.name}}" style="flex: 1; width: 100%; text-align: center; font-size: 24px; font-weight: bold; background: transparent; border: none; padding: 0 40px; margin: 0; color: var(--kbm-text); font-family: var(--kbm-font-header); box-shadow: none; border-bottom: 1px dashed var(--kbm-border-subtle);"/>
+        
+        <a class="sheet-lock" title="{{localize 'KEXBORN.LockEdit'}}" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); font-size: 22px; cursor: pointer; color: {{#if isLocked}}#ff6b6b{{else}}#4a5{{/if}}; text-shadow: 0 2px 4px rgba(0,0,0,0.8); z-index: 10;">
+            <i class="fas {{#if isLocked}}fa-lock{{else}}fa-lock-open{{/if}}"></i>
+        </a>
+        
+    </header>
+
+    <div class="sheet-body" style="flex: 1; overflow-y: auto; padding: 0 15px 15px 15px; position: relative; border-top: none !important;">
+
+        <div id="rating-context-menu" style="display: none; position: absolute; background: rgba(0,0,0,0.9); border: 1px solid var(--kbm-border); border-radius: 6px; padding: 10px; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.8); width: 160px; flex-direction: column; gap: 5px;">
+            <button type="button" id="show-image-btn" style="width: 100%; background: #333; color: #fff; border: 1px solid #555; border-radius: 4px; padding: 6px; cursor: pointer; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                <i class="fas fa-image"></i> {{localize 'KEXBORN.ShowPortrait'}}
+            </button>
+            <button type="button" id="show-sheet-btn" style="width: 100%; background: #333; color: #fff; border: 1px solid #555; border-radius: 4px; padding: 6px; cursor: pointer; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                <i class="fas fa-file-alt"></i> {{localize 'KEXBORN.ShowSheet'}}
+            </button>
+        </div>
+
+        <table style="width: 100%; text-align: left; border-collapse: separate; border-spacing: 0 6px; margin-top: 0;">
+            <thead>
+                <tr style="color: var(--kbm-text-muted); font-family: var(--kbm-font-header); font-size: 16px;">
+                    <th style="width: 40px; text-align: center;">{{localize 'KEXBORN.Rank'}}</th>
+                    <th style="width: 50px; text-align: center;"></th>
+                    <th style="width: 25%;">{{localize 'KEXBORN.Participant'}}</th>
+                    <th style="width: 40%;">{{localize 'KEXBORN.Note'}}</th>
+                    <th style="width: 40px; text-align: center;" title="{{localize 'KEXBORN.Details'}}"><i class="fas fa-book"></i></th>
+                    <th style="width: 80px; text-align: center;">{{#if system.scoreLabel}}{{system.scoreLabel}}{{else}}{{localize 'KEXBORN.Glory'}}{{/if}}</th>
+                    {{#unless isLocked}}
+                    <th style="width: 40px; text-align: center;"><a class="config-score-label" title="{{localize 'KEXBORN.ColumnConfig'}}" style="cursor: pointer; color: var(--kbm-text-muted);"><i class="fas fa-cog"></i></a></th>
+                    {{/unless}}
+                </tr>
+            </thead>
+            <tbody>
+                {{#each entries}}
+                <tr class="entry-row" data-entry-id="{{this.id}}" style="background: var(--kbm-panel); transition: 0.2s;">
+                    <td style="text-align: center; font-weight: bold; font-size: 18px; color: var(--kbm-text); border-left: 3px solid var(--kbm-border); border-radius: 4px 0 0 4px; background: rgba(0,0,0,0.1);">{{this.rank}}</td>
+                    <td style="text-align: center; padding: 4px;">
+                        <div class="entry-portrait" title="{{localize 'KEXBORN.OptionsRMB'}}" style="width: 36px; height: 36px; border-radius: 5px; overflow: hidden; border: 1px solid var(--kbm-border); margin: 0 auto; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.5);">
+                            <img src="{{this.img}}" style="width: 100%; height: 100%; object-fit: cover; border: none; margin: 0; padding: 0; display: block;"/>
+                        </div>
+                    </td>
+                    <td style="font-weight: bold; font-size: 15px; text-shadow: 0 0 2px rgba(0,0,0,0.5);">{{this.name}}</td>
+                    <td>
+                        {{#unless ../isLocked}}
+                        <input type="text" class="entry-short-note" value="{{this.shortNote}}" placeholder="{{localize 'KEXBORN.ShortDescPlaceholder'}}" style="width: 100%; background: transparent; border: none; border-bottom: 1px dashed var(--kbm-border-subtle); color: var(--kbm-text); padding: 4px 0; font-size: 13px; font-family: inherit;"/>
+                        {{else}}
+                        <span style="font-size: 13px; color: var(--kbm-text-muted);">{{this.shortNote}}</span>
+                        {{/unless}}
+                    </td>
+                    <td class="note-cell" data-name="{{this.name}}" data-note="{{this.longNote}}" style="text-align: center;">
+                        <a class="entry-long-note" style="font-size: 18px; cursor: pointer; color: {{#if this.longNote}}var(--kbm-border){{else}}var(--kbm-text-muted){{/if}};"><i class="fas fa-scroll"></i></a>
+                    </td>
+                    <td style="text-align: center;">
+                        {{#unless ../isLocked}}
+                        <input type="number" class="entry-score" value="{{this.score}}" style="width: 60px; text-align: center; font-weight: bold; background: var(--kbm-input-bg); color: var(--kbm-input-text); border: 1px solid var(--kbm-border); border-radius: 4px; padding: 4px;"/>
+                        {{else}}
+                        <span style="font-weight: bold; font-size: 18px; color: var(--kbm-border);">{{this.score}}</span>
+                        {{/unless}}
+                    </td>
+                    {{#unless ../isLocked}}
+                    <td style="text-align: center; border-radius: 0 4px 4px 0;">
+                        <a class="entry-delete" title="{{localize 'KEXBORN.ExcludeFromRating'}}" style="color: var(--kbm-danger); font-size: 14px; cursor: pointer;"><i class="fas fa-times"></i></a>
+                    </td>
+                    {{/unless}}
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        
+        {{#unless isLocked}}
+        <div style="text-align: center; margin-top: 30px; padding: 20px; border: 2px dashed var(--kbm-border-subtle); border-radius: 8px; background: rgba(0,0,0,0.05);">
+            <span style="color: var(--kbm-text-muted); font-size: 14px;"><i class="fas fa-download" style="font-size: 20px; display: block; margin-bottom: 10px; color: var(--kbm-border);"></i> {{localize 'KEXBORN.DragActorsHere'}}</span>
+        </div>
+        {{/unless}}
+    </div>
+</form>

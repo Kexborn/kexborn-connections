@@ -1,0 +1,246 @@
+<form class="{{cssClass}} kbm-window kbm-board-form theme-{{theme}}" autocomplete="off" tabindex="0" style="height: 100%; display: flex; flex-direction: column; overflow: hidden; padding: 0; background: var(--kbm-bg-color); outline: none;">
+    <style>
+        .kbm-board-sheet .window-content { padding: 0 !important; background: var(--kbm-bg-color) !important; border: none !important; }
+        .kbm-board-sheet .window-header { background: rgba(0, 0, 0, 0.1) !important; border-bottom: none !important; }
+        .kbm-board-sheet .window-header .window-title { color: #ffffff !important; text-shadow: 1px 1px 2px #000; }
+        .kbm-board-sheet .window-header a { color: #ffffff !important; text-shadow: 1px 1px 2px #000; }
+        
+        .tool-btn { background: rgba(0,0,0,0.1); border: 1px solid var(--kbm-border-subtle); border-radius: 4px; color: var(--kbm-text); cursor: pointer; padding: 6px 12px; font-size: 14px; transition: 0.2s; display: flex; align-items: center; justify-content: center;}
+        .tool-btn:hover { background: var(--kbm-border-subtle); color: var(--kbm-text); }
+        .tool-btn.active { background: var(--kbm-border); border-color: var(--kbm-border); color: var(--kbm-bg-color); font-weight: bold; box-shadow: 0 0 8px var(--kbm-border-subtle);}
+        
+        .color-dot { width: 18px; height: 18px; border-radius: 50%; cursor: pointer; border: 2px solid rgba(255,255,255,0.2); box-shadow: 0 2px 4px rgba(0,0,0,0.8); transition: 0.2s;}
+        .color-dot:hover { transform: scale(1.1); }
+        .color-dot.active { border-color: #fff; transform: scale(1.3); box-shadow: 0 0 5px #fff; }
+        
+        .config-select { background: var(--kbm-input-bg); color: var(--kbm-input-text); border: 1px solid var(--kbm-border-subtle); border-radius: 4px; padding: 4px; font-size: 13px; font-family: var(--kbm-font-body); cursor: pointer; }
+        .config-select option { background-color: #222 !important; color: #fff !important; }
+        
+        .group-resize-handle { position: absolute; background: var(--kbm-text); border: 2px solid; z-index: 10; display: none; box-shadow: 0 0 8px rgba(0,0,0,0.8); pointer-events: auto; }
+        .tool-group .group-resize-handle { display: block; }
+        .resize-se { right: -6px; bottom: -6px; width: 12px; height: 12px; border-radius: 50%; cursor: nwse-resize; }
+        .resize-e { right: -6px; top: 50%; transform: translateY(-50%); width: 8px; height: 20px; border-radius: 4px; cursor: ew-resize; }
+        .resize-s { bottom: -6px; left: 50%; transform: translateX(-50%); width: 20px; height: 8px; border-radius: 4px; cursor: ns-resize; }
+
+        .selected-node .node-portrait, .selected-node.joint-node .node-portrait { box-shadow: 0 0 0 4px var(--kbm-border), 0 4px 15px var(--kbm-border-subtle) !important; border-color: var(--kbm-border) !important; }
+        .selected-node.group-node { filter: drop-shadow(0 0 8px var(--kbm-border)); }
+        #selection-box { position: absolute; border: 1px dashed var(--kbm-border); background: var(--kbm-border-subtle); z-index: 900; pointer-events: none; display: none; }
+
+        .status-dead img { filter: grayscale(100%) contrast(120%); }
+        .status-dead img, .status-crossed img, .status-unknown img, .status-check img { opacity: 0.4; }
+        
+        .status-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 32px; color: rgba(255,255,255,0.9); text-shadow: 0 0 10px #000, 0 0 5px #000; pointer-events: none; z-index: 5; }
+        .status-icon.fa-times { color: var(--kbm-danger); font-size: 45px; }
+        .cycle-status { position: absolute; top: -5px; left: -5px; background: var(--kbm-bg-color); color: var(--kbm-text); width: 20px; height: 20px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 10px; cursor: pointer; border: 1px solid var(--kbm-border); box-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 10; }
+        
+        .picker-dot { transition: 0.2s; }
+        .picker-dot:hover { transform: scale(1.2); border-color: var(--kbm-bg-color) !important; }
+        #node-color-picker button { transition: 0.2s; }
+        #node-color-picker button:hover { background: var(--kbm-border) !important; color: var(--kbm-bg-color) !important; border-color: var(--kbm-border) !important; }
+    </style>
+
+    <header class="sheet-header" style="position: relative; flex: 0 0 auto; padding: 15px; border-bottom: 2px solid var(--kbm-border) !important; display: flex; align-items: center; justify-content: center; z-index: 20; background: rgba(0,0,0,0.1); flex-direction: row;">
+        
+        <i class="fas fa-project-diagram" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-size: 24px; color: var(--kbm-border); pointer-events: none;"></i>
+        
+        <input name="name" type="text" value="{{actor.name}}" style="flex: 1; width: 100%; text-align: center; font-size: 24px; font-weight: bold; background: transparent; border: none; padding: 0 40px; margin: 0; color: var(--kbm-text); font-family: var(--kbm-font-header); box-shadow: none; border-bottom: 1px dashed var(--kbm-border-subtle);"/>
+        
+        <a class="sheet-lock" title="{{localize 'KEXBORN.LockEdit'}}" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); font-size: 22px; cursor: pointer; color: {{#if isLocked}}#ff6b6b{{else}}#4a5{{/if}}; text-shadow: 0 2px 4px rgba(0,0,0,0.8); z-index: 10;">
+            <i class="fas {{#if isLocked}}fa-lock{{else}}fa-lock-open{{/if}}"></i>
+        </a>
+        
+    </header>
+
+    {{#unless isLocked}}
+    <div class="board-toolbar" style="flex: 0 0 auto; padding: 8px 15px; background: rgba(0,0,0,0.05); border-bottom: 1px solid var(--kbm-border-subtle); display: flex; gap: 15px; align-items: center; z-index: 15; flex-wrap: wrap;">
+        
+        <div style="display: flex; gap: 5px;">
+            <button type="button" class="tool-btn active" data-tool="move" title="{{localize 'KEXBORN.ToolMove'}}"><i class="fas fa-hand-pointer"></i></button>
+            <button type="button" class="tool-btn" data-tool="draw" title="{{localize 'KEXBORN.ToolDraw'}}"><i class="fas fa-slash"></i></button>
+            <button type="button" class="tool-btn" data-tool="joint-v" title="{{localize 'KEXBORN.ToolJointV'}}"><i class="fas fa-arrows-alt-v"></i></button>
+            <button type="button" class="tool-btn" data-tool="joint-h" title="{{localize 'KEXBORN.ToolJointH'}}"><i class="fas fa-arrows-alt-h"></i></button>
+            <button type="button" class="tool-btn" data-tool="group" title="{{localize 'KEXBORN.ToolGroup'}}"><i class="far fa-clone"></i></button>
+            <button type="button" class="tool-btn" data-tool="cut" title="{{localize 'KEXBORN.ToolCut'}}"><i class="fas fa-cut"></i></button>
+            <button type="button" class="tool-btn" data-tool="note" title="{{localize 'KEXBORN.ToolNote'}}"><i class="fas fa-comment-dots"></i></button>
+            <button type="button" class="tool-btn" data-tool="record" title="{{localize 'KEXBORN.ToolRecord'}}"><i class="fas fa-file-alt"></i></button>
+        </div>
+
+        <select id="group-shape" class="config-select" title="{{localize 'KEXBORN.GroupShape'}}">
+            <option value="circle">{{localize 'KEXBORN.ShapeCircle'}}</option>
+            <option value="square">{{localize 'KEXBORN.ShapeSquare'}}</option>
+            <option value="rect">{{localize 'KEXBORN.ShapeRect'}}</option>
+            <option value="triangle">{{localize 'KEXBORN.ShapeTriangle'}}</option>
+        </select>
+
+        <div style="width: 1px; height: 24px; background: var(--kbm-border-subtle); margin: 0 10px;"></div>
+
+        <select id="thread-style" class="config-select">
+            <option value="solid">{{localize 'KEXBORN.StyleSolid'}}</option>
+            <option value="double">{{localize 'KEXBORN.StyleDouble'}}</option>
+            <option value="dashed">{{localize 'KEXBORN.StyleDashed'}}</option>
+            <option value="chain">{{localize 'KEXBORN.StyleChain'}}</option>
+            <option value="wavy">{{localize 'KEXBORN.StyleWavy'}}</option>
+            <option value="orthogonal">{{localize 'KEXBORN.StyleOrthogonal'}}</option>
+        </select>
+        <div style="display: flex; gap: 6px; align-items: center; padding-left: 10px;">
+            <div class="color-dot" data-color="#ff4757" style="background: #ff4757;" title="{{localize 'KEXBORN.ColorRed'}}"></div>
+            <div class="color-dot" data-color="#ffa502" style="background: #ffa502;" title="{{localize 'KEXBORN.ColorOrange'}}"></div>
+            <div class="color-dot" data-color="#eccc68" style="background: #eccc68;" title="{{localize 'KEXBORN.ColorYellow'}}"></div>
+            <div class="color-dot" data-color="#2ed573" style="background: #2ed573;" title="{{localize 'KEXBORN.ColorGreen'}}"></div>
+            <div class="color-dot" data-color="#70a1ff" style="background: #70a1ff;" title="{{localize 'KEXBORN.ColorLightBlue'}}"></div>
+            <div class="color-dot" data-color="#1e90ff" style="background: #1e90ff;" title="{{localize 'KEXBORN.ColorBlue'}}"></div>
+            <div class="color-dot" data-color="#9c88ff" style="background: #9c88ff;" title="{{localize 'KEXBORN.ColorPurple'}}"></div>
+            <div class="color-dot active" data-color="#ffffff" style="background: #ffffff;" title="{{localize 'KEXBORN.ColorWhite'}}"></div>
+            <div class="color-dot" data-color="#747d8c" style="background: #747d8c;" title="{{localize 'KEXBORN.ColorGray'}}"></div>
+            <div class="color-dot" data-color="#1a1a1a" style="background: #1a1a1a;" title="{{localize 'KEXBORN.ColorBlack'}}"></div>
+        </div>
+    </div>
+    {{/unless}}
+    
+    <div class="board-viewport" style="flex: 1; position: relative; overflow: hidden; background-color: var(--kbm-bg-color);">
+        
+        <!-- ВСПЛЫВАЮЩЕЕ МЕНЮ ЦВЕТОВ И ЛИСТА (ПКМ) -->
+        <div id="node-color-picker" style="display: none; position: absolute; background: var(--kbm-bg-color); border: 1px solid var(--kbm-border); border-radius: 6px; padding: 10px; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.8); gap: 8px; flex-wrap: wrap; width: 132px;">
+            <div style="width: 100%; display: flex; flex-direction: column; gap: 5px;">
+                <button type="button" id="show-image-btn" style="width: 100%; background: var(--kbm-input-bg); color: var(--kbm-input-text); border: 1px solid var(--kbm-border-subtle); border-radius: 4px; padding: 6px; cursor: pointer; font-size: 13px; font-family: var(--kbm-font-body); display: flex; align-items: center; justify-content: center; gap: 6px;">
+                    <i class="fas fa-image"></i> {{localize 'KEXBORN.ShowPortrait'}}
+                </button>
+                <button type="button" id="show-sheet-btn" style="width: 100%; background: var(--kbm-input-bg); color: var(--kbm-input-text); border: 1px solid var(--kbm-border-subtle); border-radius: 4px; padding: 6px; cursor: pointer; font-size: 13px; font-family: var(--kbm-font-body); display: flex; align-items: center; justify-content: center; gap: 6px;">
+                    <i class="fas fa-file-alt"></i> {{localize 'KEXBORN.ShowSheet'}}
+            </button>
+            </div>
+            <div style="width: 100%; height: 1px; background: var(--kbm-border-subtle); margin-bottom: 2px;"></div>
+            <div class="picker-dot" data-color="default" style="width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #888; background: repeating-linear-gradient(45deg, transparent, transparent 5px, #555 5px, #555 10px);" title="{{localize 'KEXBORN.ColorDefault'}}"></div>
+            <div class="picker-dot" data-color="#ff4757" style="width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #555; background: #ff4757;" title="{{localize 'KEXBORN.ColorRed'}}"></div>
+            <div class="picker-dot" data-color="#ffa502" style="width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #555; background: #ffa502;" title="{{localize 'KEXBORN.ColorOrange'}}"></div>
+            <div class="picker-dot" data-color="#eccc68" style="width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #555; background: #eccc68;" title="{{localize 'KEXBORN.ColorYellow'}}"></div>
+            <div class="picker-dot" data-color="#2ed573" style="width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #555; background: #2ed573;" title="{{localize 'KEXBORN.ColorGreen'}}"></div>
+            <div class="picker-dot" data-color="#70a1ff" style="width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #555; background: #70a1ff;" title="{{localize 'KEXBORN.ColorLightBlue'}}"></div>
+            <div class="picker-dot" data-color="#1e90ff" style="width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #555; background: #1e90ff;" title="{{localize 'KEXBORN.ColorBlue'}}"></div>
+            <div class="picker-dot" data-color="#9c88ff" style="width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #555; background: #9c88ff;" title="{{localize 'KEXBORN.ColorPurple'}}"></div>
+            <div class="picker-dot" data-color="#ffffff" style="width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #555; background: #ffffff;" title="{{localize 'KEXBORN.ColorWhite'}}"></div>
+            <div class="picker-dot" data-color="#747d8c" style="width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #555; background: #747d8c;" title="{{localize 'KEXBORN.ColorGray'}}"></div>
+            <div class="picker-dot" data-color="#1a1a1a" style="width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #555; background: #1a1a1a;" title="{{localize 'KEXBORN.ColorBlack'}}"></div>
+        </div>
+
+        <div class="board-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; background-image: radial-gradient(circle, var(--kbm-text) 1px, transparent 1px); background-size: 30px 30px; opacity: 0.15;"></div>
+
+        <div class="board-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform-origin: 0 0;">
+            
+            <div id="selection-box"></div> <!-- РАМКА ВЫДЕЛЕНИЯ -->
+
+            <!-- СЛОЙ 0: ГРУППЫ -->
+            <div class="board-groups" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;">
+                {{#each boardNodes}}
+                {{#if this.isGroup}}
+                <div class="board-node group-node" data-node-id="{{this.id}}" data-type="{{this.type}}" data-x="{{this.x}}" data-y="{{this.y}}" data-w="{{this.width}}" data-h="{{this.height}}" data-shape="{{this.shape}}" style="position: absolute; left: {{this.x}}px; top: {{this.y}}px; transform: translate(-50%, -50%); width: {{this.width}}px; height: {{this.height}}px; pointer-events: none;">
+                    
+                    <svg width="100%" height="100%" preserveAspectRatio="none" style="position:absolute; top:0; left:0; pointer-events:none; overflow:visible;">
+                        {{#if this.isCircle}} <ellipse cx="{{this.halfW}}" cy="{{this.halfH}}" rx="{{this.halfW}}" ry="{{this.halfH}}" fill="{{this.bgColor}}" stroke="{{this.color}}" stroke-width="4" stroke-dasharray="10, 8" /> {{/if}}
+                        {{#if this.isSquare}} <rect x="0" y="0" width="{{this.width}}" height="{{this.height}}" fill="{{this.bgColor}}" stroke="{{this.color}}" stroke-width="4" stroke-dasharray="10, 8" rx="8" ry="8" /> {{/if}}
+                        {{#if this.isRect}} <rect x="0" y="0" width="{{this.width}}" height="{{this.height}}" fill="{{this.bgColor}}" stroke="{{this.color}}" stroke-width="4" stroke-dasharray="10, 8" rx="8" ry="8" /> {{/if}}
+                        {{#if this.isTriangle}} <polygon points="{{this.halfW}},0 0,{{this.height}} {{this.width}},{{this.height}}" fill="{{this.bgColor}}" stroke="{{this.color}}" stroke-width="4" stroke-dasharray="10, 8" stroke-linejoin="round" /> {{/if}}
+                    </svg>
+
+                    <div style="position: absolute; top: -35px; left: 50%; transform: translateX(-50%); pointer-events: auto; display: flex; align-items: center;">
+                        <span class="group-name" style="font-weight: bold; font-size: 16px; font-family: var(--kbm-font-header); color: {{this.color}}; background: var(--kbm-bg-color); padding: 4px 10px; border-radius: 6px; cursor: pointer; white-space: nowrap; border: 1px solid {{this.color}}; box-shadow: 0 4px 10px rgba(0,0,0,0.8);">{{this.name}}</span>
+                        {{#unless ../isLocked}}
+                        <a class="delete-node" style="color: #fff; cursor: pointer; margin-left: 8px; font-size: 12px; background: var(--kbm-danger); border: 1px solid var(--kbm-border); padding: 4px 6px; border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.5);"><i class="fas fa-times"></i></a>
+                        {{/unless}}
+                    </div>
+                    
+                    <div class="group-hitbox" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: auto; border-radius: {{#if this.isCircle}}50%{{else}}0{{/if}}; {{#unless ../isLocked}}cursor: crosshair;{{/unless}}"></div>
+
+                    {{#unless ../isLocked}}
+                    <div class="group-resize-handle resize-se" data-dir="se" style="border-color: {{this.color}};"></div>
+                    {{#if this.isResizableXY}}
+                        <div class="group-resize-handle resize-e" data-dir="e" style="border-color: {{this.color}};"></div>
+                        <div class="group-resize-handle resize-s" data-dir="s" style="border-color: {{this.color}};"></div>
+                    {{/if}}
+                    {{/unless}}
+                </div>
+                {{/if}}
+                {{/each}}
+            </div>
+
+            <!-- СЛОЙ 1: СВЯЗИ -->
+            <svg style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: visible; z-index: 1; pointer-events: none;">
+                {{#each connections}}
+                <g class="connection-group" data-conn-id="{{this.id}}" data-source="{{this.sourceId}}" data-target="{{this.targetId}}">
+                    {{#if this.isSolid}} <line x1="{{this.x1}}" y1="{{this.y1}}" x2="{{this.x2}}" y2="{{this.y2}}" stroke="{{this.color}}" stroke-width="4" stroke-linecap="round"/> {{/if}}
+                    {{#if this.isDashed}} <line x1="{{this.x1}}" y1="{{this.y1}}" x2="{{this.x2}}" y2="{{this.y2}}" stroke="{{this.color}}" stroke-width="4" stroke-dasharray="10, 8" stroke-linecap="round"/> {{/if}}
+                    {{#if this.isDouble}} <line x1="{{this.x1}}" y1="{{this.y1}}" x2="{{this.x2}}" y2="{{this.y2}}" stroke="{{this.color}}" stroke-width="8" stroke-linecap="round"/> <line x1="{{this.x1}}" y1="{{this.y1}}" x2="{{this.x2}}" y2="{{this.y2}}" stroke="var(--kbm-bg-color)" stroke-width="4" stroke-linecap="round"/> {{/if}}
+                    {{#if this.isChain}} <line x1="{{this.x1}}" y1="{{this.y1}}" x2="{{this.x2}}" y2="{{this.y2}}" stroke="{{this.color}}" stroke-width="8" stroke-dasharray="0, 18" stroke-linecap="round"/> <line x1="{{this.x1}}" y1="{{this.y1}}" x2="{{this.x2}}" y2="{{this.y2}}" stroke="var(--kbm-bg-color)" stroke-width="3" stroke-dasharray="0, 18" stroke-linecap="round"/> {{/if}}
+                    
+                    {{#if this.hasPath}} 
+                        <path d="{{this.svgPath}}" stroke="{{this.color}}" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"/> 
+                        <path class="connection-hitbox" d="{{this.svgPath}}" stroke="transparent" stroke-width="24" fill="none" style="pointer-events: {{#if ../isLocked}}none{{else}}auto{{/if}}; cursor: crosshair;"/>
+                    {{else}}
+                        <line class="connection-hitbox" x1="{{this.x1}}" y1="{{this.y1}}" x2="{{this.x2}}" y2="{{this.y2}}" stroke="transparent" stroke-width="24" style="pointer-events: {{#if ../isLocked}}none{{else}}auto{{/if}}; cursor: crosshair;"/>
+                    {{/if}}
+                </g>
+                {{/each}}
+                
+                <line id="drawing-line" x1="0" y1="0" x2="0" y2="0" stroke="var(--kbm-border)" stroke-width="3" stroke-dasharray="5,5" style="display: none; pointer-events: none;" />
+                <path id="drawing-path" d="" stroke="var(--kbm-border)" stroke-width="3" fill="none" stroke-linejoin="round" style="display: none; pointer-events: none;" />
+            </svg>
+
+            <!-- СЛОЙ 2: ЗАМЕТКИ НА ЛИНИЯХ -->
+            <div class="board-labels" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2;">
+                {{#each connections}}
+                    {{#if this.label}}
+                    <div class="connection-label" data-conn-id="{{this.id}}" style="position: absolute; left: {{this.midX}}px; top: {{this.midY}}px; transform: translate(-50%, -50%); background: var(--kbm-bg-color); color: {{this.color}}; font-family: var(--kbm-font-body); padding: 2px 8px; border-radius: 4px; font-size: 13px; font-weight: bold; border: 1px solid {{this.color}}; box-shadow: 0 2px 5px rgba(0,0,0,0.6); white-space: nowrap;">
+                        {{this.label}}
+                    </div>
+                    {{/if}}
+                {{/each}}
+            </div>
+
+            <!-- СЛОЙ 3: ПЕРСОНАЖИ, ПРЕДМЕТЫ, ЖУРНАЛЫ И ЗАПИСИ -->
+            <div class="board-nodes" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 3; pointer-events: none;">
+                {{#each boardNodes}}
+                
+                {{#if this.isJoint}}
+                <!-- МАЛЕНЬКИЙ УЗЕЛ РОДСТВА -->
+                <div class="board-node joint-node" data-node-id="{{this.id}}" data-type="{{this.type}}" data-x="{{this.x}}" data-y="{{this.y}}" style="position: absolute; left: {{this.x}}px; top: {{this.y}}px; transform: translate(-50%, -50%); pointer-events: none;">
+                    <div class="node-portrait" style="position: absolute; left: -8px; top: -8px; width: 16px; height: 16px; border-radius: 50%; background: {{this.color}}; border: 2px solid var(--kbm-border); box-shadow: 0 0 5px rgba(0,0,0,0.8); pointer-events: auto; {{#unless ../isLocked}}cursor: grab;{{/unless}}">
+                        {{#unless ../isLocked}}
+                        <a class="delete-node" style="position: absolute; top: -14px; right: -14px; background: var(--kbm-danger); color: white; width: 16px; height: 16px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 10px; cursor: pointer; border: 1px solid var(--kbm-border); box-shadow: 0 2px 4px rgba(0,0,0,0.5);"><i class="fas fa-times"></i></a>
+                        {{/unless}}
+                    </div>
+                    <div class="group-hitbox" style="position: absolute; left: -16px; top: -16px; width: 32px; height: 32px; border-radius: 50%; pointer-events: auto; {{#unless ../isLocked}}cursor: crosshair;{{/unless}}"></div>
+                </div>
+                {{/if}}
+
+                {{#if this.isActorLike}}
+                <!-- ПИНЫ (АКТЕРЫ, ПРЕДМЕТЫ, ЖУРНАЛЫ, ЗАПИСИ) -->
+                <div class="board-node {{#if this.isDead}}status-dead{{/if}} {{#if this.isCrossed}}status-crossed{{/if}} {{#if this.isUnknown}}status-unknown{{/if}} {{#if this.isCheck}}status-check{{/if}}" data-node-id="{{this.id}}" data-type="{{this.type}}" data-x="{{this.x}}" data-y="{{this.y}}" style="position: absolute; left: {{this.x}}px; top: {{this.y}}px; pointer-events: none;">
+                    
+                    <div class="node-portrait" style="position: absolute; left: -32px; top: -32px; width: 64px; height: 64px; border-radius: 50%; border: 3px solid {{#if this.isDefaultColor}}var(--kbm-border){{else}}{{this.color}}{{/if}}; box-shadow: 0 4px 10px rgba(0,0,0,0.6); background: var(--kbm-bg-color); pointer-events: auto; {{#unless ../isLocked}}cursor: grab;{{/unless}}">
+                        <img src="{{this.img}}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: none; margin: 0; padding: 0;" title="{{this.name}}"/>
+                        
+                        <!-- ИКОНКИ СТАТУСОВ -->
+                        {{#if this.isDead}}<i class="fas fa-skull status-icon"></i>{{/if}}
+                        {{#if this.isUnknown}}<i class="fas fa-question status-icon" style="color: var(--kbm-text);"></i>{{/if}}
+                        {{#if this.isCrossed}}<i class="fas fa-times status-icon"></i>{{/if}}
+                        {{#if this.isCheck}}<i class="fas fa-check status-icon" style="color: #2ed573; text-shadow: 0 0 5px #000;"></i>{{/if}}
+
+                        {{#unless ../isLocked}}
+                        <a class="cycle-status" title="{{localize 'KEXBORN.CycleStatus'}}"><i class="fas fa-tag"></i></a>
+                        <a class="delete-node" style="position: absolute; top: -5px; right: -5px; background: var(--kbm-danger); color: white; width: 20px; height: 20px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 10px; cursor: pointer; border: 1px solid var(--kbm-border); box-shadow: 0 2px 4px rgba(0,0,0,0.5);"><i class="fas fa-times"></i></a>
+                        {{/unless}}
+                    </div>
+                    
+                    <div style="position: absolute; top: 38px; left: -75px; width: 150px; text-align: center; pointer-events: auto;">
+                        <span class="{{#if this.isRecord}}record-name{{/if}}" style="display: inline-block; font-weight: bold; font-size: 13px; font-family: var(--kbm-font-header); line-height: 1.2; color: var(--kbm-text); background: var(--kbm-bg-color); padding: 4px 8px; border-radius: 6px; border: 1px solid var(--kbm-border-subtle); box-shadow: 0 2px 5px rgba(0,0,0,0.5); {{#if this.isRecord}}cursor: pointer;{{/if}}">
+                            {{this.name}}
+                        </span>
+                    </div>
+                </div>
+                {{/if}}
+
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</form>
