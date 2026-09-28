@@ -1,11 +1,13 @@
 {
   "id": "kexborn-connections",
   "title": "Kexborn.mod - Связи и Рейтинги",
-  "description": "Графы отношений, родословные и рейтинговые таблицы для Foundry VTT.",
+  "description": "<p>Графы отношений, родословные и рейтинговые таблицы для Foundry VTT.</p>",
   "version": "1.0.0",
   "authors": [
     {
-      "name": "Kexborn"
+      "name": "Kexborn",
+      "url": "https://boosty.to/kexborn",
+      "flags": {}
     }
   ],
   "url": "https://github.com/Kexborn/kexborn-connections",
@@ -19,58 +21,70 @@
     "main.js"
   ],
   "styles": [
-    "kexborn-connections.css"
+    {
+      "src": "kexborn-connections.css"
+    }
   ],
   "languages": [
     {
       "lang": "ru",
       "name": "Русский",
-      "path": "lang/ru.json"
+      "path": "lang/ru.json",
+      "flags": {}
     },
     {
       "lang": "en",
       "name": "English",
-      "path": "lang/en.json"
+      "path": "lang/en.json",
+      "flags": {}
     },
     {
       "lang": "de",
       "name": "Deutsch",
-      "path": "lang/de.json"
+      "path": "lang/de.json",
+      "flags": {}
     },
     {
       "lang": "fr",
       "name": "Français",
-      "path": "lang/fr.json"
+      "path": "lang/fr.json",
+      "flags": {}
     },
     {
       "lang": "es",
       "name": "Español",
-      "path": "lang/es.json"
+      "path": "lang/es.json",
+      "flags": {}
     },
     {
       "lang": "pt",
       "name": "Português",
-      "path": "lang/pt.json"
+      "path": "lang/pt.json",
+      "flags": {}
     },
     {
       "lang": "it",
       "name": "Italiano",
-      "path": "lang/it.json"
+      "path": "lang/it.json",
+      "flags": {}
     },
     {
       "lang": "pl",
       "name": "Polski",
-      "path": "lang/pl.json"
+      "path": "lang/pl.json",
+      "flags": {}
     },
     {
       "lang": "zh",
       "name": "中文",
-      "path": "lang/zh.json"
+      "path": "lang/zh.json",
+      "flags": {}
     },
     {
       "lang": "ja",
       "name": "日本語",
-      "path": "lang/ja.json"
+      "path": "lang/ja.json",
+      "flags": {}
     }
   ],
   "documentTypes": {
@@ -78,5 +92,6 @@
       "board": {},
       "rating": {}
     }
-  }
+  },
+  "flags": {}
 }
