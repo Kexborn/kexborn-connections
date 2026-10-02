@@ -65,10 +65,17 @@
   "KEXBORN.Unknown": "未知",
   "KEXBORN.SettingsThemeName": "界面主题",
   "KEXBORN.SettingsThemeHint": "选择关系树和排行榜的视觉样式。",
-  "KEXBORN.ThemeDnD": "D&D (浅色)",
-  "KEXBORN.ThemeDnDDark": "D&D (深色)",
-  "KEXBORN.ThemeDark": "黑暗奇幻",
-  "KEXBORN.ThemeScifi": "科幻",
-  "KEXBORN.ThemeUniversal": "通用 (浅色)",
-  "KEXBORN.ThemeUniversalDark": "通用 (深色)"
+
+  "KEXBORN.ThemeDnD": "Classic ⦁ Light",
+  "KEXBORN.ThemeDnDDark": "Classic ⦁ Dark",
+  "KEXBORN.ThemeDark": "Dark Fantasy",
+  "KEXBORN.ThemeScifiLightBlue": "Sci-Fi ⦁ Light blue",
+  "KEXBORN.ThemeScifiDarkBlue": "Sci-Fi ⦁ Dark blue",
+  "KEXBORN.ThemeScifiRed": "Sci-Fi ⦁ Red",
+  "KEXBORN.ThemeScifiGreen": "Sci-Fi ⦁ Green",
+  "KEXBORN.ThemeScifiOrange": "Sci-Fi ⦁ Orange",
+  "KEXBORN.ThemeScifiViolet": "Sci-Fi ⦁ Violet",
+  "KEXBORN.ThemeScifiGrey": "Sci-Fi ⦁ Grey",
+  "KEXBORN.ThemeUniversal": "Universal ⦁ Light",
+  "KEXBORN.ThemeUniversalDark": "Universal ⦁ Dark"
 }

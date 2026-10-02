@@ -57,21 +57,130 @@
     --kbm-danger: #ff3333;
 }
 
-.theme-scifi {
+/* Sci-Fi Темы (Приглушенные) */
+.theme-scifi-light-blue {
     --kbm-bg: none;
     --kbm-bg-color: #0d1117;
-    --kbm-border: #00e6ff;
-    --kbm-border-subtle: rgba(0, 230, 255, 0.2);
+    --kbm-border: #00b8cc;
+    --kbm-border-subtle: rgba(0, 184, 204, 0.2);
     --kbm-text: #c9d1d9;
     --kbm-text-muted: #8b949e;
     --kbm-font-header: 'Jura', sans-serif;
     --kbm-font-body: sans-serif;
-    --kbm-panel: rgba(0, 230, 255, 0.05);
-    --kbm-input-bg: rgba(0, 230, 255, 0.1);
-    --kbm-input-text: #00e6ff;
+    --kbm-panel: rgba(0, 184, 204, 0.05);
+    --kbm-input-bg: rgba(0, 184, 204, 0.1);
+    --kbm-input-text: #00b8cc;
     --kbm-sidebar-bg: none;
     --kbm-sidebar-icon: #30363d;
-    --kbm-sidebar-active: #00e6ff;
+    --kbm-sidebar-active: #00b8cc;
+    --kbm-danger: #ff4444;
+}
+
+.theme-scifi-dark-blue {
+    --kbm-bg: none;
+    --kbm-bg-color: #0b0f14;
+    --kbm-border: #1a66cc;
+    --kbm-border-subtle: rgba(26, 102, 204, 0.2);
+    --kbm-text: #c9d1d9;
+    --kbm-text-muted: #8b949e;
+    --kbm-font-header: 'Jura', sans-serif;
+    --kbm-font-body: sans-serif;
+    --kbm-panel: rgba(26, 102, 204, 0.05);
+    --kbm-input-bg: rgba(26, 102, 204, 0.1);
+    --kbm-input-text: #4d94ff;
+    --kbm-sidebar-bg: none;
+    --kbm-sidebar-icon: #30363d;
+    --kbm-sidebar-active: #1a66cc;
+    --kbm-danger: #ff4444;
+}
+
+.theme-scifi-red {
+    --kbm-bg: none;
+    --kbm-bg-color: #0d1117;
+    --kbm-border: #ff3333;
+    --kbm-border-subtle: rgba(255, 51, 51, 0.2);
+    --kbm-text: #c9d1d9;
+    --kbm-text-muted: #8b949e;
+    --kbm-font-header: 'Jura', sans-serif;
+    --kbm-font-body: sans-serif;
+    --kbm-panel: rgba(255, 51, 51, 0.05);
+    --kbm-input-bg: rgba(255, 51, 51, 0.1);
+    --kbm-input-text: #ff3333;
+    --kbm-sidebar-bg: none;
+    --kbm-sidebar-icon: #30363d;
+    --kbm-sidebar-active: #ff3333;
+    --kbm-danger: #ff4444;
+}
+
+.theme-scifi-green {
+    --kbm-bg: none;
+    --kbm-bg-color: #0d1117;
+    --kbm-border: #33ff33;
+    --kbm-border-subtle: rgba(51, 255, 51, 0.2);
+    --kbm-text: #c9d1d9;
+    --kbm-text-muted: #8b949e;
+    --kbm-font-header: 'Jura', sans-serif;
+    --kbm-font-body: sans-serif;
+    --kbm-panel: rgba(51, 255, 51, 0.05);
+    --kbm-input-bg: rgba(51, 255, 51, 0.1);
+    --kbm-input-text: #33ff33;
+    --kbm-sidebar-bg: none;
+    --kbm-sidebar-icon: #30363d;
+    --kbm-sidebar-active: #33ff33;
+    --kbm-danger: #ff4444;
+}
+
+.theme-scifi-orange {
+    --kbm-bg: none;
+    --kbm-bg-color: #0d1117;
+    --kbm-border: #ff9900;
+    --kbm-border-subtle: rgba(255, 153, 0, 0.2);
+    --kbm-text: #c9d1d9;
+    --kbm-text-muted: #8b949e;
+    --kbm-font-header: 'Jura', sans-serif;
+    --kbm-font-body: sans-serif;
+    --kbm-panel: rgba(255, 153, 0, 0.05);
+    --kbm-input-bg: rgba(255, 153, 0, 0.1);
+    --kbm-input-text: #ff9900;
+    --kbm-sidebar-bg: none;
+    --kbm-sidebar-icon: #30363d;
+    --kbm-sidebar-active: #ff9900;
+    --kbm-danger: #ff4444;
+}
+
+.theme-scifi-violet {
+    --kbm-bg: none;
+    --kbm-bg-color: #0d1117;
+    --kbm-border: #9933cc;
+    --kbm-border-subtle: rgba(153, 51, 204, 0.2);
+    --kbm-text: #c9d1d9;
+    --kbm-text-muted: #8b949e;
+    --kbm-font-header: 'Jura', sans-serif;
+    --kbm-font-body: sans-serif;
+    --kbm-panel: rgba(153, 51, 204, 0.05);
+    --kbm-input-bg: rgba(153, 51, 204, 0.1);
+    --kbm-input-text: #9933cc;
+    --kbm-sidebar-bg: none;
+    --kbm-sidebar-icon: #30363d;
+    --kbm-sidebar-active: #9933cc;
+    --kbm-danger: #ff4444;
+}
+
+.theme-scifi-grey {
+    --kbm-bg: none;
+    --kbm-bg-color: #0d1117;
+    --kbm-border: #aaaaaa;
+    --kbm-border-subtle: rgba(170, 170, 170, 0.2);
+    --kbm-text: #c9d1d9;
+    --kbm-text-muted: #8b949e;
+    --kbm-font-header: 'Jura', sans-serif;
+    --kbm-font-body: sans-serif;
+    --kbm-panel: rgba(170, 170, 170, 0.05);
+    --kbm-input-bg: rgba(170, 170, 170, 0.1);
+    --kbm-input-text: #aaaaaa;
+    --kbm-sidebar-bg: none;
+    --kbm-sidebar-icon: #30363d;
+    --kbm-sidebar-active: #aaaaaa;
     --kbm-danger: #ff4444;
 }
 
@@ -173,9 +282,10 @@ form.kbm-window .settlement-sidebar {
     margin: 0;
 }
 
+/* Отключаем фон для всех sci-fi и темных тем */
 form.kbm-window.theme-dark .settlement-sidebar, 
 form.kbm-window.theme-dnd-dark .settlement-sidebar,
-form.kbm-window.theme-scifi .settlement-sidebar, 
+form.kbm-window[class*="theme-scifi"] .settlement-sidebar, 
 form.kbm-window.theme-universal .settlement-sidebar, 
 form.kbm-window.theme-universal-dark .settlement-sidebar { 
     background-color: var(--kbm-panel) !important; 
@@ -356,6 +466,21 @@ form.kbm-window nav.sheet-tabs > a.item.active { color: var(--kbm-border) !impor
 }
 .tree-node.built img { border-color: #16a34a !important; }
 
+/* Приглушение цветов веток и построенных зданий специально для Sci-Fi тем */
+form.kbm-window[class*="theme-scifi"] .tree-node.branch {
+    border-color: #6b35c7 !important; 
+    background: rgba(107, 53, 199, 0.05) !important;
+}
+
+form.kbm-window[class*="theme-scifi"] .tree-node.built {
+    border-color: #178c41 !important; 
+    background: rgba(23, 140, 65, 0.1) !important;
+}
+
+form.kbm-window[class*="theme-scifi"] .tree-node.built img { 
+    border-color: #178c41 !important; 
+}
+
 .tree-node.available {
     border-color: var(--kbm-border);
     opacity: 0.9;
@@ -382,55 +507,6 @@ form.kbm-window nav.sheet-tabs > a.item.active { color: var(--kbm-border) !impor
     flex-direction: column;
 }
 
-/* Элементы kexborn-world-manager */
-.standard-form ol.unlist li:has(input[value^="kexborn-world-manager."]) {
-    order: 99;
-    background: rgba(0, 0, 0, 0.04);
-    border-radius: 5px;
-}
-
-/* Универсальное скрытие дефолтных системных иконок в любых системах (dnd5e, swade, coc и т.д.) */
-label:has(input[value^="kexborn-world-manager."]) [class*="-icon"],
-label:has(input[value^="kexborn-world-manager."]) dnd5e-icon {
-    display: none !important;
-}
-
-label:has(input[value^="kexborn-world-manager."])::before {
-    content: "";
-    display: inline-block;
-    flex: 0 0 32px;
-    width: 32px;
-    height: 32px;
-    background-color: currentColor; 
-    opacity: 0.7; 
-    margin-right: 10px;
-}
-
-label:has(input[value="kexborn-world-manager.settlement"])::before {
-    -webkit-mask: url('/icons/svg/castle.svg') center / contain no-repeat;
-    mask: url('/icons/svg/castle.svg') center / contain no-repeat;
-}
-label:has(input[value="kexborn-world-manager.special-place"])::before {
-    -webkit-mask: url('/icons/svg/cave.svg') center / contain no-repeat;
-    mask: url('/icons/svg/cave.svg') center / contain no-repeat;
-}
-label:has(input[value="kexborn-world-manager.faction"])::before {
-    -webkit-mask: url('/icons/svg/combat.svg') center / contain no-repeat;
-    mask: url('/icons/svg/combat.svg') center / contain no-repeat;
-}
-label:has(input[value="kexborn-world-manager.organization"])::before {
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 512'%3E%3Cpath d='M144 160c-44.2 0-80-35.8-80-80S99.8 0 144 0s80 35.8 80 80-35.8 80-80 80zm352 0c-44.2 0-80-35.8-80-80S451.8 0 496 0s80 35.8 80 80-35.8 80-80 80zM0 298.7C0 239.8 47.8 192 106.7 192h42.7c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0H21.3C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7h42.7C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3H405.3zM224 224c0-44.2 35.8-80 80-80s80 35.8 80 80-35.8 80-80 80s-80-35.8-80-80zm-53.3 128H469.3c17.7 0 32 14.3 32 32c0 53-43 96-96 96H234.7c-53 0-96-43-96-96c0-17.7 14.3-32 32-32z'/%3E%3C/svg%3E") center / contain no-repeat;
-    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 512'%3E%3Cpath d='M144 160c-44.2 0-80-35.8-80-80S99.8 0 144 0s80 35.8 80 80-35.8 80-80 80zm352 0c-44.2 0-80-35.8-80-80S451.8 0 496 0s80 35.8 80 80-35.8 80-80 80zM0 298.7C0 239.8 47.8 192 106.7 192h42.7c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0H21.3C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7h42.7C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3H405.3zM224 224c0-44.2 35.8-80 80-80s80 35.8 80 80-35.8 80-80 80s-80-35.8-80-80zm-53.3 128H469.3c17.7 0 32 14.3 32 32c0 53-43 96-96 96H234.7c-53 0-96-43-96-96c0-17.7 14.3-32 32-32z'/%3E%3C/svg%3E") center / contain no-repeat;
-}
-label:has(input[value="kexborn-world-manager.city-structure"])::before {
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M239.1 6.3l-208 78c-18.7 7-31.1 25-31.1 45v22.5c0 25 20.3 45.2 45.2 45.2H54.6V400H32c-17.7 0-32 14.3-32 32v16c0 17.7 14.3 32 32 32h448c17.7 0 32-14.3 32-32v-16c0-17.7-14.3-32-32-32h-22.6V197H466.8c25 0 45.2-20.3 45.2-45.2V129.4c0-20-12.4-38-31.1-45l-208-78C262 2.2 250 2.2 239.1 6.3zM256 68.4l192 72v11.4H64V140.4l192-72zM112 197h45.3v203H112V197zm112 0h45.3v203H224V197zm112 0h45.3v203H336V197z'/%3E%3C/svg%3E") center / contain no-repeat;
-    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M239.1 6.3l-208 78c-18.7 7-31.1 25-31.1 45v22.5c0 25 20.3 45.2 45.2 45.2H54.6V400H32c-17.7 0-32 14.3-32 32v16c0 17.7 14.3 32 32 32h448c17.7 0 32-14.3 32-32v-16c0-17.7-14.3-32-32-32h-22.6V197H466.8c25 0 45.2-20.3 45.2-45.2V129.4c0-20-12.4-38-31.1-45l-208-78C262 2.2 250 2.2 239.1 6.3zM256 68.4l192 72v11.4H64V140.4l192-72zM112 197h45.3v203H112V197zm112 0h45.3v203H224V197zm112 0h45.3v203H336V197z'/%3E%3C/svg%3E") center / contain no-repeat;
-}
-label:has(input[value="kexborn-world-manager.organization-feature"])::before {
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'%3E%3Cpath d='M0 48C0 21.5 21.5 0 48 0l288 0c26.5 0 48 21.5 48 48l0 448c0 13.7-10 25.6-23.5 28.2s-26.6-2.5-34.1-13.4L192 368.1 73.6 510.9c-7.5 10.9-20.6 16-34.1 13.4S0 509.7 0 496L0 48z'/%3E%3C/svg%3E") center / contain no-repeat;
-    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'%3E%3Cpath d='M0 48C0 21.5 21.5 0 48 0l288 0c26.5 0 48 21.5 48 48l0 448c0 13.7-10 25.6-23.5 28.2s-26.6-2.5-34.1-13.4L192 368.1 73.6 510.9c-7.5 10.9-20.6 16-34.1 13.4S0 509.7 0 496L0 48z'/%3E%3C/svg%3E") center / contain no-repeat;
-}
-
 /* Элементы kexborn-connections */
 .standard-form ol.unlist li:has(input[value^="kexborn-connections."]) {
     order: 100;
@@ -438,11 +514,50 @@ label:has(input[value="kexborn-world-manager.organization-feature"])::before {
     border-radius: 5px;
 }
 
+/* Универсальное скрытие дефолтных системных иконок в любых системах */
 label:has(input[value^="kexborn-connections."]) [class*="-icon"],
 label:has(input[value^="kexborn-connections."]) dnd5e-icon {
     display: none !important;
 }
 
+/* База для наших собственных иконок */
+label:has(input[value^="kexborn-connections."])::before {
+    content: "";
+    display: inline-block;
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    background-color: currentColor;
+    opacity: 0.7; 
+    margin-right: 10px;
+}
+
+/* Рисуем разделительную линию только над ПЕРВЫМ элементом модуля */
+.standard-form ol.unlist li:has(input[value^="kexborn-connections."])::after {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: 2%;
+    width: 96%;
+    height: 1px;
+    background: rgba(128, 128, 128, 0.4); /* Универсальный полупрозрачный цвет */
+}
+
+/* Отменяем отступ и линию для всех последующих элементов модуля */
+.standard-form ol.unlist li:has(input[value^="kexborn-connections."]) ~ li:has(input[value^="kexborn-connections."]) {
+    margin-top: 0;
+}
+.standard-form ol.unlist li:has(input[value^="kexborn-connections."]) ~ li:has(input[value^="kexborn-connections."])::after {
+    display: none;
+}
+
+/* Универсальное скрытие дефолтных системных иконок в любых системах */
+label:has(input[value^="kexborn-connections."]) [class*="-icon"],
+label:has(input[value^="kexborn-connections."]) dnd5e-icon {
+    display: none !important;
+}
+
+/* База для наших собственных иконок */
 label:has(input[value^="kexborn-connections."])::before {
     content: "";
     display: inline-block;
@@ -510,3 +625,13 @@ label:has(input[value="kexborn-connections.rating"])::before {
 .kbm-board-form .port-bottom { bottom: -6px; left: calc(50% - 6px); }
 .kbm-board-form .port-left { left: -6px; top: calc(50% - 6px); }
 .kbm-board-form .port-right { right: -6px; top: calc(50% - 6px); }
+
+/* Замена иконки свитка на современный документ (файл) для Sci-Fi тем */
+form.kbm-window[class*="theme-scifi"] .entry-long-note .fa-scroll::before {
+    content: "\f15c"; 
+}
+
+/* Замена иконки свитка на книгу для Универсальных тем */
+form.kbm-window[class*="theme-universal"] .entry-long-note .fa-scroll::before {
+    content: "\f02d"; 
+}

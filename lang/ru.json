@@ -72,10 +72,17 @@
   "KEXBORN.Unknown": "Неизвестный",
   "KEXBORN.SettingsThemeName": "Тема оформления",
   "KEXBORN.SettingsThemeHint": "Выберите визуальный стиль для окон связей и рейтингов.",
-  "KEXBORN.ThemeDnD": "D&D (Светлая)",
-  "KEXBORN.ThemeDnDDark": "D&D (Темная)",
-  "KEXBORN.ThemeDark": "Темное фэнтези",
-  "KEXBORN.ThemeScifi": "Sci-Fi",
-  "KEXBORN.ThemeUniversal": "Универсальная (Светлая)",
-  "KEXBORN.ThemeUniversalDark": "Универсальная (Темная)"
+
+  "KEXBORN.ThemeDnD": "Classic ⦁ Light",
+  "KEXBORN.ThemeDnDDark": "Classic ⦁ Dark",
+  "KEXBORN.ThemeDark": "Dark Fantasy",
+  "KEXBORN.ThemeScifiLightBlue": "Sci-Fi ⦁ Light blue",
+  "KEXBORN.ThemeScifiDarkBlue": "Sci-Fi ⦁ Dark blue",
+  "KEXBORN.ThemeScifiRed": "Sci-Fi ⦁ Red",
+  "KEXBORN.ThemeScifiGreen": "Sci-Fi ⦁ Green",
+  "KEXBORN.ThemeScifiOrange": "Sci-Fi ⦁ Orange",
+  "KEXBORN.ThemeScifiViolet": "Sci-Fi ⦁ Violet",
+  "KEXBORN.ThemeScifiGrey": "Sci-Fi ⦁ Grey",
+  "KEXBORN.ThemeUniversal": "Universal ⦁ Light",
+  "KEXBORN.ThemeUniversalDark": "Universal ⦁ Dark"
 }

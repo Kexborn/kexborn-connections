@@ -65,10 +65,17 @@
   "KEXBORN.Unknown": "Unbekannt",
   "KEXBORN.SettingsThemeName": "Thema",
   "KEXBORN.SettingsThemeHint": "Wählen Sie den visuellen Stil für Verbindungsbäume und Ranglisten.",
-  "KEXBORN.ThemeDnD": "D&D (Hell)",
-  "KEXBORN.ThemeDnDDark": "D&D (Dunkel)",
-  "KEXBORN.ThemeDark": "Dunkles Fantasy",
-  "KEXBORN.ThemeScifi": "Sci-Fi",
-  "KEXBORN.ThemeUniversal": "Universal (Hell)",
-  "KEXBORN.ThemeUniversalDark": "Universal (Dunkel)"
+
+  "KEXBORN.ThemeDnD": "Classic ⦁ Light",
+  "KEXBORN.ThemeDnDDark": "Classic ⦁ Dark",
+  "KEXBORN.ThemeDark": "Dark Fantasy",
+  "KEXBORN.ThemeScifiLightBlue": "Sci-Fi ⦁ Light blue",
+  "KEXBORN.ThemeScifiDarkBlue": "Sci-Fi ⦁ Dark blue",
+  "KEXBORN.ThemeScifiRed": "Sci-Fi ⦁ Red",
+  "KEXBORN.ThemeScifiGreen": "Sci-Fi ⦁ Green",
+  "KEXBORN.ThemeScifiOrange": "Sci-Fi ⦁ Orange",
+  "KEXBORN.ThemeScifiViolet": "Sci-Fi ⦁ Violet",
+  "KEXBORN.ThemeScifiGrey": "Sci-Fi ⦁ Grey",
+  "KEXBORN.ThemeUniversal": "Universal ⦁ Light",
+  "KEXBORN.ThemeUniversalDark": "Universal ⦁ Dark"
 }

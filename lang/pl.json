@@ -65,10 +65,17 @@
   "KEXBORN.Unknown": "Nieznany",
   "KEXBORN.SettingsThemeName": "Motyw",
   "KEXBORN.SettingsThemeHint": "Wybierz styl wizualny dla drzew powiązań i tabel rankingowych.",
-  "KEXBORN.ThemeDnD": "D&D (Jasny)",
-  "KEXBORN.ThemeDnDDark": "D&D (Ciemny)",
-  "KEXBORN.ThemeDark": "Ciemne Fantasy",
-  "KEXBORN.ThemeScifi": "Sci-Fi",
-  "KEXBORN.ThemeUniversal": "Uniwersalny (Jasny)",
-  "KEXBORN.ThemeUniversalDark": "Uniwersalny (Ciemny)"
+
+  "KEXBORN.ThemeDnD": "Classic ⦁ Light",
+  "KEXBORN.ThemeDnDDark": "Classic ⦁ Dark",
+  "KEXBORN.ThemeDark": "Dark Fantasy",
+  "KEXBORN.ThemeScifiLightBlue": "Sci-Fi ⦁ Light blue",
+  "KEXBORN.ThemeScifiDarkBlue": "Sci-Fi ⦁ Dark blue",
+  "KEXBORN.ThemeScifiRed": "Sci-Fi ⦁ Red",
+  "KEXBORN.ThemeScifiGreen": "Sci-Fi ⦁ Green",
+  "KEXBORN.ThemeScifiOrange": "Sci-Fi ⦁ Orange",
+  "KEXBORN.ThemeScifiViolet": "Sci-Fi ⦁ Violet",
+  "KEXBORN.ThemeScifiGrey": "Sci-Fi ⦁ Grey",
+  "KEXBORN.ThemeUniversal": "Universal ⦁ Light",
+  "KEXBORN.ThemeUniversalDark": "Universal ⦁ Dark"
 }
